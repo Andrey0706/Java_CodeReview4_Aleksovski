@@ -38,6 +38,8 @@ public class Main {
         user1.printReport();
         user2.printReport();
 
+        products.get(4).refillProduct(products.get(4));
+
             Menu theMenu = new Menu(products, users);
 
     }

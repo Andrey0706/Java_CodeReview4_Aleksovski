@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu {
-    public Menu(HashMap<Integer, Product> products, HashMap<Integer, User> users) throws StockLimitReachedException {
+    public Menu(HashMap<Integer, Product> products, HashMap<Integer, User> users) {
         String lineSeparator = "-".repeat(20);
         int totalSpaces = 22;
         String firstLine = "Welcome";
@@ -222,9 +222,16 @@ public class Menu {
                     scanner = new Scanner(System.in);
                     int productID = scanner.nextInt();
                     if(products.get(productID).getStock()>14){
-                        throw new StockLimitReachedException("The product has max units in the stock, you cannot add more");
+                        try {
+                            throw new StockLimitReachedException("The product has max units in the stock, you cannot add more");
+                        }
+                        catch (Exception ex){
+                            System.out.println(ex);
+                            break;
+                        }
+                        }
 
-                    }
+
                     System.out.println("Please enter how many units you will add");
                     scanner = new Scanner(System.in);
                     int unitsToAdd = scanner.nextInt();

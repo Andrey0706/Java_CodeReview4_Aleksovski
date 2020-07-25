@@ -71,6 +71,21 @@ public class Product {
         this.category = category;
     }
 
+    public void refillProduct(Product product){
+        System.out.println("*** REFILLING PRODUCT ***");
+
+        int productID = product.getProductId();
+        if(product.getStock()>14){
+            try {
+                throw new StockLimitReachedException("The product has max units in the stock, you cannot add more");
+            }
+            catch (Exception ex){
+                System.out.println(ex);
+                return;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return
